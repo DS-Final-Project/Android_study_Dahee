@@ -14,9 +14,11 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton: Button = findViewById(R.id.roll_button)
         val countUpButton: Button = findViewById(R.id.count_up_button)
+        val resetButton: Button = findViewById(R.id.reset_button)
 
         rollButton.setOnClickListener { rollDice() }
         countUpButton.setOnClickListener{ countUp() }
+        resetButton.setOnClickListener { reset() }
     }
 
     private fun rollDice() {
@@ -38,5 +40,11 @@ class MainActivity : AppCompatActivity() {
                 resultText.text = resultInt.toString()
             }
         }
+    }
+
+    private fun reset() {
+        val resultText: TextView = findViewById(R.id.result_text)
+        Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show()
+        resultText.text = "0"
     }
 }
