@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton: Button = findViewById(R.id.roll_button)
         //val countUpButton: Button = findViewById(R.id.count_up_button)
-        //val resetButton: Button = findViewById(R.id.reset_button)
+        val clearButton: Button = findViewById(R.id.clear_button)
 
         rollButton.setOnClickListener { rollDice() }
         //countUpButton.setOnClickListener{ countUp() }
-        //resetButton.setOnClickListener { reset() }
+        clearButton.setOnClickListener { clear() }
     }
 
     private fun rollDice() {
@@ -53,11 +53,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun reset() {
-        val resultText: TextView = findViewById(R.id.result_text)
-        Toast.makeText(this, "Reset", Toast.LENGTH_SHORT).show()
-        resultText.text = "0"
-    }
 
  */
+    private fun clear() {
+        Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show()
+        diceImage.setImageResource(R.drawable.empty_dice)
+    }
+
 }
