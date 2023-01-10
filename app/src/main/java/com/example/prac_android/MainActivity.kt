@@ -1,14 +1,12 @@
 package com.example.prac_android
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +17,16 @@ class MainActivity : AppCompatActivity() {
     }
     private fun makeColored(view: View) {
         when(view.id) {
+            //TextView 클릭 시
             R.id.box_one_text -> view.setBackgroundColor(Color.DKGRAY)
             R.id.box_two_text -> view.setBackgroundColor(Color.GRAY)
             R.id.box_three_text -> view.setBackgroundColor(Color.BLUE)
             R.id.box_four_text -> view.setBackgroundColor(Color.MAGENTA)
             R.id.box_five_text -> view.setBackgroundColor(Color.BLUE)
+            //Button 클릭 시
+            R.id.red_button -> box_three_text.setBackgroundResource(R.color.my_red)
+            R.id.yellow_button -> box_four_text.setBackgroundResource(R.color.my_yellow)
+            R.id.green_button -> box_five_text.setBackgroundResource(R.color.my_green)
             else -> view.setBackgroundColor(Color.LTGRAY)
         }
     }
@@ -36,7 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         val rootConstraintLayout = findViewById<View>(R.id.constraint_layout)
 
-        val clickableViews: List<View> = listOf(boxOneText,boxTwoText,boxThreeText,boxFourText,boxFiveText,rootConstraintLayout)
+        val redButton = findViewById<Button>(R.id.red_button)
+        val yellowButton = findViewById<Button>(R.id.yellow_button)
+        val greenButton = findViewById<Button>(R.id.green_button)
+
+        val clickableViews: List<View> = listOf(boxOneText,boxTwoText,boxThreeText
+            ,boxFourText,boxFiveText,rootConstraintLayout,redButton,yellowButton,greenButton)
 
         for (item in clickableViews) {
             item.setOnClickListener{makeColored(it)}
