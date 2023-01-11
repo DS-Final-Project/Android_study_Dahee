@@ -1,63 +1,53 @@
 package com.example.prac_android
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var diceImage : ImageView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        diceImage = findViewById(R.id.dice_img)
-
-        val rollButton: Button = findViewById(R.id.roll_button)
-        //val countUpButton: Button = findViewById(R.id.count_up_button)
-        val clearButton: Button = findViewById(R.id.clear_button)
-
-        rollButton.setOnClickListener { rollDice() }
-        //countUpButton.setOnClickListener{ countUp() }
-        clearButton.setOnClickListener { clear() }
+        setListeners()
     }
-
-    private fun rollDice() {
-        val drawableResource =when ((1..6).random()) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-        }
-        diceImage.setImageResource(drawableResource)
-        Toast.makeText(this, "Roll Dice", Toast.LENGTH_SHORT).show()
-
-    }
-/*
-    private fun countUp() {
-        val resultText: TextView = findViewById(R.id.result_text)
-        Toast.makeText(this, "Count Up", Toast.LENGTH_SHORT).show()
-        if(resultText.text == "Hello World!") {
-            resultText.text = "1"
-        }else{
-            var resultInt = resultText.text.toString().toInt()
-            if(resultInt <6) {
-                resultInt++
-                resultText.text = resultInt.toString()
-            }
+    private fun makeColored(view: View) {
+        when(view.id) {
+            //TextView 클릭 시
+            R.id.box_one_text -> view.setBackgroundColor(Color.DKGRAY)
+            R.id.box_two_text -> view.setBackgroundColor(Color.GRAY)
+            R.id.box_three_text -> view.setBackgroundColor(Color.BLUE)
+            R.id.box_four_text -> view.setBackgroundColor(Color.MAGENTA)
+            R.id.box_five_text -> view.setBackgroundColor(Color.BLUE)
+            //Button 클릭 시
+            R.id.red_button -> box_three_text.setBackgroundResource(R.color.my_red)
+            R.id.yellow_button -> box_four_text.setBackgroundResource(R.color.my_yellow)
+            R.id.green_button -> box_five_text.setBackgroundResource(R.color.my_green)
+            else -> view.setBackgroundColor(Color.LTGRAY)
         }
     }
+    private fun setListeners() {
+        val boxOneText = findViewById<TextView>(R.id.box_one_text)
+        val boxTwoText = findViewById<TextView>(R.id.box_two_text)
+        val boxThreeText = findViewById<TextView>(R.id.box_three_text)
+        val boxFourText = findViewById<TextView>(R.id.box_four_text)
+        val boxFiveText = findViewById<TextView>(R.id.box_five_text)
 
+        val rootConstraintLayout = findViewById<View>(R.id.constraint_layout)
 
- */
-    private fun clear() {
-        Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show()
-        diceImage.setImageResource(R.drawable.empty_dice)
+        val redButton = findViewById<Button>(R.id.red_button)
+        val yellowButton = findViewById<Button>(R.id.yellow_button)
+        val greenButton = findViewById<Button>(R.id.green_button)
+
+        val clickableViews: List<View> = listOf(boxOneText,boxTwoText,boxThreeText
+            ,boxFourText,boxFiveText,rootConstraintLayout,redButton,yellowButton,greenButton)
+
+        for (item in clickableViews) {
+            item.setOnClickListener{makeColored(it)}
+        }
     }
-
 }
