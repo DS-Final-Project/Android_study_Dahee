@@ -16,7 +16,7 @@ class GameOverFragment : Fragment() {
     ): View? { // Inflate the layout for this fragment
         binding = FragmentGameOverBinding.inflate(inflater,container,false)
         binding.tryAgainButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)
+            view.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment())
         }
         return binding.root
     }
