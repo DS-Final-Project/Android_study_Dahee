@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R.layout
 import com.example.prac_android.databinding.FragmentGame2Binding
@@ -27,9 +29,7 @@ class GameFragment2 : Fragment() {
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener {
-            findNavController().navigate(GameFragment2Directions.actionGameToTitle())
-        }
+        binding.endGameButton.setOnClickListener { onEndGame() }
 
         binding.score = viewModel.score
         updateScoreText()
@@ -51,7 +51,6 @@ class GameFragment2 : Fragment() {
         updateWordText()
     }
 
-
     /** Methods for updating the UI **/
 
     private fun updateWordText() {
@@ -61,4 +60,19 @@ class GameFragment2 : Fragment() {
     private fun updateScoreText() {
         binding.scoreText.text = viewModel.score.toString()
     }
+
+    private fun onEndGame() {
+        gameFinished()
+    }
+
+    /**
+     * Called when the game is finished
+     */
+    private fun gameFinished() {
+        Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
+        val action = GameFragment2Directions.actionGameToScore()
+        action.score = viewModel.score
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
 }
