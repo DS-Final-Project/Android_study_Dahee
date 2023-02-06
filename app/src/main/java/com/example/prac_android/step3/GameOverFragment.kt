@@ -1,4 +1,4 @@
-package com.example.prac_android
+package com.example.prac_android.step3
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +16,7 @@ class GameOverFragment : Fragment() {
     ): View? { // Inflate the layout for this fragment
         binding = FragmentGameOverBinding.inflate(inflater,container,false)
         binding.tryAgainButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment())
+            view.findNavController().navigate(com.example.prac_android.GameOverFragmentDirections.actionGameOverFragmentToGameFragment())
         }
         return binding.root
     }

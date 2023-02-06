@@ -1,4 +1,4 @@
-package com.example.prac_android
+package com.example.prac_android.step3
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.example.prac_android.R
+import com.example.prac_android.R.string
 import com.example.prac_android.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
@@ -83,12 +85,17 @@ class GameFragment : Fragment() {
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
                         view.findNavController()
-                            .navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions,questionIndex))
+                            .navigate(
+                                com.example.prac_android.GameFragmentDirections.actionGameFragmentToGameWonFragment(
+                                    numQuestions,
+                                    questionIndex
+                                )
+                            )
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
                     view.findNavController()
-                        .navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
+                        .navigate(com.example.prac_android.GameFragmentDirections.actionGameFragmentToGameOverFragment())
                 }
             }
         }
@@ -109,6 +116,6 @@ class GameFragment : Fragment() {
         answers = currentQuestion.answers.toMutableList()
         // and shuffle them
         answers.shuffle()
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(string.title_android_trivia_question, questionIndex + 1, numQuestions)
     }
 }

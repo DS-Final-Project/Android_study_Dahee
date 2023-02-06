@@ -1,4 +1,4 @@
-package com.example.prac_android
+package com.example.prac_android.step3
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

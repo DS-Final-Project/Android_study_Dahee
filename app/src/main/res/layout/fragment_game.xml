@@ -6,7 +6,7 @@
 
         <variable
             name="game"
-            type="com.example.prac_android.GameFragment" />
+            type="com.example.prac_android.step3.GameFragment" />
     </data>
 
     <ScrollView

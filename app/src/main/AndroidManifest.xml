@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Prac_android"
-        android:name="com.example.prac_android.ClickerApplication"
+        android:name="com.example.prac_android.step4.ClickerApplication"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

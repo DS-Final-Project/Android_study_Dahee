@@ -1,4 +1,4 @@
-package com.example.prac_android
+package com.example.prac_android.step3
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
+import com.example.prac_android.R
+import com.example.prac_android.R.string
 import com.example.prac_android.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {
@@ -19,7 +21,7 @@ class GameWonFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { // Inflate the layout for this fragment
-        binding = FragmentGameWonBinding.inflate(inflater,container,false)
+        binding = com.example.prac_android.databinding.FragmentGameWonBinding.inflate(inflater,container,false)
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
         binding.nextMatchButton.setOnClickListener { view : View ->
             view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())
@@ -35,7 +37,7 @@ class GameWonFragment : Fragment() {
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT, getString(R.string.share_success_text, args.numCorrect, args.numQuestions))
+            .putExtra(Intent.EXTRA_TEXT, getString(string.share_success_text, args.numCorrect, args.numQuestions))
         return shareIntent
     }
 
