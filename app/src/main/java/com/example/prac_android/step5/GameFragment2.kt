@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentGame2Binding
 import timber.log.Timber
@@ -43,6 +44,9 @@ class GameFragment2 : Fragment() {
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
+        binding.endGameButton.setOnClickListener {
+            findNavController().navigate(GameFragment2Directions.actionGameToTitle())
+        }
         binding.score = score
         updateScoreText()
         updateWordText()
