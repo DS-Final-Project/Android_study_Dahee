@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentGame2Binding
+import timber.log.Timber
+
+const val KEY_CURRENT_SCORE = "current_score_key"
 
 class GameFragment2 : Fragment() {
 
@@ -22,6 +25,15 @@ class GameFragment2 : Fragment() {
 
     private lateinit var binding: FragmentGame2Binding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            score = savedInstanceState.getInt(KEY_CURRENT_SCORE, 0)
+
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { // Inflate the layout for this fragment
@@ -31,6 +43,7 @@ class GameFragment2 : Fragment() {
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
+        binding.score = score
         updateScoreText()
         updateWordText()
         return binding.root
@@ -99,5 +112,12 @@ class GameFragment2 : Fragment() {
 
     private fun updateScoreText() {
         binding.scoreText.text = score.toString()
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_CURRENT_SCORE,score)
+        Timber.i("onSaveInstanceState Called")
     }
 }

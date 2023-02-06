@@ -86,7 +86,7 @@ class GameFragment : Fragment() {
                         // We've won!  Navigate to the gameWonFragment.
                         view.findNavController()
                             .navigate(
-                                com.example.prac_android.GameFragmentDirections.actionGameFragmentToGameWonFragment(
+                                GameFragmentDirections.actionGameFragmentToGameWonFragment(
                                     numQuestions,
                                     questionIndex
                                 )
@@ -95,7 +95,7 @@ class GameFragment : Fragment() {
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
                     view.findNavController()
-                        .navigate(com.example.prac_android.GameFragmentDirections.actionGameFragmentToGameOverFragment())
+                        .navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
                 }
             }
         }
