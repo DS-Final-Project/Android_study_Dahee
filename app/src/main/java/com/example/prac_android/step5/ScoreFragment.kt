@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentScoreBinding
 
@@ -27,6 +28,14 @@ class ScoreFragment : Fragment() {
         viewModel.score.observe(viewLifecycleOwner, Observer{ newScore ->
             binding.scoreText.text = newScore.toString()
         })
+        viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
+            if(playAgain) {
+                findNavController().navigate(ScoreFragmentDirections.actionRestart())
+                viewModel.onPlayAgainComplete()
+            }
+        })
+
+        binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
         return binding.root
     }
 
