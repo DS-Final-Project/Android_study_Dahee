@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -30,14 +31,18 @@ class GameFragment2 : Fragment() {
         //아래 코드와 동일
         //viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
+        viewModel.score.observe(viewLifecycleOwner, Observer{ newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
+        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+            binding.wordText.text = newWord
+        })
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
         binding.endGameButton.setOnClickListener { onEndGame() }
 
-        binding.score = viewModel.score
-        updateScoreText()
-        updateWordText()
+        binding.score = viewModel.score.value
         return binding.root
     }
 
@@ -47,25 +52,11 @@ class GameFragment2 : Fragment() {
     private fun onSkip() {
         //viewModel에서 데이터 처리 후 UI controller에서 UI업데이트
         viewModel.onSkip()
-        updateWordText()
-        updateScoreText()
     }
 
     //UI 업데이트를 위한 코드 포함
     private fun onCorrect() {
         viewModel.onCorrect()
-        updateScoreText()
-        updateWordText()
-    }
-
-    /** Methods for updating the UI **/
-
-    private fun updateWordText() {
-        binding.wordText.text = viewModel.word
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.toString()
     }
 
     private fun onEndGame() {
@@ -78,7 +69,8 @@ class GameFragment2 : Fragment() {
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
         val action = GameFragment2Directions.actionGameToScore()
-        action.score = viewModel.score
+        //data가 null이면 0을 반환하고 아니면 viewModel.score.value를 반환
+        action.score = viewModel.score.value?:0
         NavHostFragment.findNavController(this).navigate(action)
     }
 
