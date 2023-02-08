@@ -18,6 +18,7 @@ class GameFragment2 : Fragment() {
 
     private lateinit var binding: FragmentGame2Binding
 
+    //UI controller와 viewModel 연결
     private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(
@@ -25,7 +26,10 @@ class GameFragment2 : Fragment() {
     ): View { // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, layout.fragment_game2, container, false)
         Timber.tag("GameFragment").i("Called ViewModelProvider.get")
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        //viewModel 초기화
+        //아래 코드와 동일
+        //viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        viewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
@@ -39,12 +43,15 @@ class GameFragment2 : Fragment() {
 
     /** Methods for buttons presses **/
 
+    //UI 업데이트를 위한 코드 포함
     private fun onSkip() {
+        //viewModel에서 데이터 처리 후 UI controller에서 UI업데이트
         viewModel.onSkip()
         updateWordText()
         updateScoreText()
     }
 
+    //UI 업데이트를 위한 코드 포함
     private fun onCorrect() {
         viewModel.onCorrect()
         updateScoreText()

@@ -60,11 +60,13 @@ class GameViewModel : ViewModel() {
     }
     /** Methods for buttons presses **/
 
+    //데이터 처리를 위한 코드 포함
     fun onSkip() {
         score--
         nextWord()
     }
 
+    //데이터 처리를 위한 코드 포함
     fun onCorrect() {
         score++
         nextWord()

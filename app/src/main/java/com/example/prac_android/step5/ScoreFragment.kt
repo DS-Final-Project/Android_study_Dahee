@@ -22,7 +22,7 @@ class ScoreFragment : Fragment() {
     ): View? { // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_score,container,false)
         viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[ScoreViewModel::class.java]
         binding.scoreText.text = viewModel.score.toString()
         return binding.root
     }
