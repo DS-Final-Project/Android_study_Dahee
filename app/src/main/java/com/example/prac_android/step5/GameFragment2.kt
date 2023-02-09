@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R.layout
 import com.example.prac_android.databinding.FragmentGame2Binding
 import timber.log.Timber
@@ -31,12 +29,9 @@ class GameFragment2 : Fragment() {
         //아래 코드와 동일
         //viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
-        viewModel.score.observe(viewLifecycleOwner, Observer{ newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-        viewModel.eventGameFinish.observe(viewLifecycleOwner,Observer<Boolean> { hasFinished ->
-            if(hasFinished) gameFinished()
-        })
+        viewModel.eventGameFinish.observe(viewLifecycleOwner) { hasFinished ->
+            if (hasFinished) gameFinished()
+        }
 
         //GameViewModel에 data binding 추가
         binding.gameViewModel = viewModel
