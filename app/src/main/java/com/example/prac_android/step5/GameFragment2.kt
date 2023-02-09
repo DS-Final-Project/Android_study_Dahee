@@ -41,29 +41,11 @@ class GameFragment2 : Fragment() {
             if(hasFinished) gameFinished()
         })
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndGame() }
+        //GameViewModel에 data binding 추가
+        binding.gameViewModel = viewModel
 
         binding.score = viewModel.score.value
         return binding.root
-    }
-
-    /** Methods for buttons presses **/
-
-    //UI 업데이트를 위한 코드 포함
-    private fun onSkip() {
-        //viewModel에서 데이터 처리 후 UI controller에서 UI업데이트
-        viewModel.onSkip()
-    }
-
-    //UI 업데이트를 위한 코드 포함
-    private fun onCorrect() {
-        viewModel.onCorrect()
-    }
-
-    private fun onEndGame() {
-        gameFinished()
     }
 
     /**

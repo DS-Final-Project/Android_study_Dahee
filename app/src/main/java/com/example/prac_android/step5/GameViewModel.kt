@@ -88,7 +88,7 @@ class GameViewModel : ViewModel() {
     }
 
     //게임 종료 이벤트
-    private fun onGameFinish() {
+    fun onGameFinish() {
         _eventGameFinish.value = true
     }
 
