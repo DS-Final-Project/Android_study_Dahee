@@ -25,9 +25,6 @@ class ScoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_score,container,false)
         viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
         viewModel = ViewModelProvider(this, viewModelFactory)[ScoreViewModel::class.java]
-        viewModel.score.observe(viewLifecycleOwner, Observer{ newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if(playAgain) {
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
@@ -36,6 +33,7 @@ class ScoreFragment : Fragment() {
         })
 
         binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
