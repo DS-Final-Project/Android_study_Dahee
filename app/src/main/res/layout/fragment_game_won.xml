@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.prac_android.GameWonFragment">
+    tools:context="com.example.prac_android.step3.GameWonFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameWonConstraintLayout"
