@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="score"
-            type="Integer" />
 
         <variable
             name="gameViewModel"

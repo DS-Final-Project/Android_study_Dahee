@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="scoreViewModel"
             type="com.example.prac_android.step5.ScoreViewModel" />
