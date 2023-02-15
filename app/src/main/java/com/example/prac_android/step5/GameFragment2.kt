@@ -36,7 +36,6 @@ class GameFragment2 : Fragment() {
         //GameViewModel에 data binding 추가
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.score = viewModel.score.value
         return binding.root
     }
 

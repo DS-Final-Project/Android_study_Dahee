@@ -18,9 +18,6 @@
     <color name="color_accent">#D81B60</color>
     <color name="green">#6ab343</color>
     <color name="grey">#99000000</color>
-    <color name="colorPrimary">#6ab343</color>
-    <color name="colorPrimaryDark">#388310</color>
-    <color name="colorAccent">#D81B60</color>
     <color name="ok_green_color">#6ab343</color>
     <color name="selected_green_color">#388310</color>
     <color name="skip_red_color">#f44336</color>
@@ -29,4 +26,9 @@
     <color name="grey_text_color">#99000000</color>
     <color name="grey_button_color">#606060</color>
     <color name="white_text_color">#ffffff</color>
+    <color name="colorPrimary">#6ab343</color>
+    <color name="colorPrimaryDark">#388310</color>
+    <color name="colorAccent">#6ab343</color>
+    <color name="green_color">#388310</color>
+
 </resources>

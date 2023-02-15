@@ -2,41 +2,32 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/title_destination">
+    app:startDestination="@id/sleep_tracker_fragment">
 
     <fragment
-        android:id="@+id/title_destination"
-        android:name="com.example.prac_android.step5.TitleFragment2"
-        android:label="title_fragment"
-        tools:layout="@layout/fragment_title2">
+        android:id="@+id/sleep_tracker_fragment"
+        android:name="com.example.prac_android.step6.sleeptracker.SleepTrackerFragment"
+        android:label="@string/sleep_tracker_fragment"
+        tools:layout="@layout/fragment_sleep_tracker">
         <action
-            android:id="@+id/action_title_to_game"
-            app:destination="@id/game_destination"
-            app:launchSingleTop="true" />
+            android:id="@+id/action_sleepTrackerFragment_to_sleepQualityFragment"
+            app:destination="@id/sleep_quality_fragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/game_destination"
-        android:name="com.example.prac_android.step5.GameFragment2"
-        android:label="game_fragment"
-        tools:layout="@layout/fragment_game2">
-        <action
-            android:id="@+id/action_game_to_score"
-            app:destination="@id/score_destination"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/title_destination" />
-    </fragment>
-    <fragment
-        android:id="@+id/score_destination"
-        android:name="com.example.prac_android.step5.ScoreFragment"
-        android:label="score_fragment"
-        tools:layout="@layout/fragment_score">
-        <action
-            android:id="@+id/action_restart"
-            app:destination="@+id/game_destination"
-            app:popUpTo="@+id/title_destination" />
+        android:id="@+id/sleep_quality_fragment"
+        android:name="com.example.prac_android.step6.sleepquality.SleepQualityFragment"
+        android:label="@string/sleep_quality_fragment"
+        tools:layout="@layout/fragment_sleep_quality">
         <argument
-            android:name="score"
-            android:defaultValue="0"
-            app:argType="integer" />
+            android:name="sleepNightKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_sleepQualityFragment_to_sleepTrackerFragment"
+            app:destination="@id/sleep_tracker_fragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/sleep_tracker_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
+
 </navigation>
