@@ -19,7 +19,7 @@ class TitleFragment2 : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_title2,container,false)
 
         binding.playGameButton.setOnClickListener {
-            findNavController().navigate(TitleFragment2Directions.actionTitleToGame())
+            //findNavController().navigate(TitleFragment2Directions.actionTitleToGame())
         }
 
         return binding.root
