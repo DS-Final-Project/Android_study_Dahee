@@ -36,7 +36,6 @@ class GameFragment2 : Fragment() {
         //GameViewModel에 data binding 추가
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.score = viewModel.score.value
         return binding.root
     }
 
@@ -45,10 +44,10 @@ class GameFragment2 : Fragment() {
      */
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
-        val action = GameFragment2Directions.actionGameToScore()
+        //val action = GameFragment2Directions.actionGameToScore()
         //data가 null이면 0을 반환하고 아니면 viewModel.score.value를 반환
-        action.score = viewModel.score.value?:0
-        NavHostFragment.findNavController(this).navigate(action)
+        //action.score = viewModel.score.value?:0
+        //NavHostFragment.findNavController(this).navigate(action)
 
         viewModel.onGameFinishComplete()
     }
