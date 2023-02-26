@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentSleepTrackerBinding
 import com.example.prac_android.step6.database.SleepDatabase
+import com.google.android.material.snackbar.Snackbar
 
 class SleepTrackerFragment : Fragment() {
 
@@ -44,6 +45,17 @@ class SleepTrackerFragment : Fragment() {
                         .actionSleepTrackerFragmentToSleepQualityFragment(night.nightId)
                 )
                 sleepTrackerViewModel.doneNavigating()
+            }
+        })
+
+        sleepTrackerViewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.cleared_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                sleepTrackerViewModel.doneShowingSnackbar()
             }
         })
 
