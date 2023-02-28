@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentSleepTrackerBinding
 import com.example.prac_android.step6.database.SleepDatabase
+import com.example.prac_android.step6.database.SleepNight
 import com.google.android.material.snackbar.Snackbar
 
 class SleepTrackerFragment : Fragment() {
@@ -32,6 +33,10 @@ class SleepTrackerFragment : Fragment() {
         val sleepTrackerViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(SleepTrackerViewModel::class.java)
+
+        val adapter = SleepNightAdapter()
+
+        binding.sleepList.adapter = adapter
 
         binding.lifecycleOwner = this
 
@@ -56,6 +61,12 @@ class SleepTrackerFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
                 sleepTrackerViewModel.doneShowingSnackbar()
+            }
+        })
+
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
             }
         })
 
