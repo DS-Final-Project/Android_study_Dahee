@@ -17,7 +17,7 @@ class SleepQualityFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? { // Inflate the layout for this fragment
+    ): View { // Inflate the layout for this fragment
         val binding: FragmentSleepQualityBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sleep_quality, container, false)
         val application = requireNotNull(this.activity).application
         val arguments = SleepQualityFragmentArgs.fromBundle(requireArguments())
@@ -28,13 +28,14 @@ class SleepQualityFragment : Fragment() {
 
         binding.sleepQualityViewModel = sleepQualityViewModel
 
-        SleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
+        sleepQualityViewModel.navigateToSleepTracker.observe(viewLifecycleOwner) {
             if (it == true) {
                 this.findNavController().navigate(
-                    SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment())
+                    SleepQualityFragmentDirections.actionSleepQualityFragmentToSleepTrackerFragment()
+                )
                 sleepQualityViewModel.doneNavigating()
             }
-        })
+        }
         return binding.root
     }
 }
