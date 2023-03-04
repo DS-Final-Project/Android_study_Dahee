@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prac_android.R
 import com.example.prac_android.R.drawable
@@ -32,9 +33,9 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     }
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
-        val quality: TextView = itemView.findViewById(R.id.quality_string)
-        val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
+        private val sleepLength: TextView = itemView.findViewById(R.id.sleep_length)
+        private val quality: TextView = itemView.findViewById(R.id.quality_string)
+        private val qualityImage: ImageView = itemView.findViewById(R.id.quality_image)
 
         fun bind(item: SleepNight) {
             val res = itemView.context.resources
@@ -62,4 +63,15 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
             }
         }
     }
+}
+
+class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
+    override fun areItemsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
+        return oldItem.nightId == newItem.nightId
+    }
+
+    override fun areContentsTheSame(oldItem: SleepNight, newItem: SleepNight): Boolean {
+        return oldItem == newItem
+    }
+
 }
