@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prac_android.R
 import com.example.prac_android.R.drawable
@@ -13,18 +14,12 @@ import com.example.prac_android.R.layout
 import com.example.prac_android.step6.convertDurationToFormatted
 import com.example.prac_android.step6.convertNumericQualityToString
 import com.example.prac_android.step6.database.SleepNight
+import com.example.prac_android.step6.sleeptracker.SleepNightAdapter.ViewHolder
 
-class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
-    var data = listOf<SleepNight>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
+class SleepNightAdapter : ListAdapter<SleepNight, ViewHolder>(SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
