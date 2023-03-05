@@ -26,21 +26,10 @@ class SleepNightAdapter : ListAdapter<SleepNight, ViewHolder>(SleepNightDiffCall
     class ViewHolder private constructor(val binding: ListItemSleepNightBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SleepNight) {
-            val res = itemView.context.resources
-
-            binding.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
-            binding.qualityString.text = convertNumericQualityToString(item.sleepQuality, res)
-            binding.qualityImage.setImageResource(
-                when (item.sleepQuality) {
-                    0 -> drawable.ic_sleep_0
-                    1 -> drawable.ic_sleep_1
-                    2 -> drawable.ic_sleep_2
-                    3 -> drawable.ic_sleep_3
-                    4 -> drawable.ic_sleep_4
-                    5 -> drawable.ic_sleep_5
-                    else -> drawable.ic_sleep_active
-                }
-            )
+            binding.sleep = item
+            binding.executePendingBindings()
+            //보류 중인 바인딩을 즉시 실행하도록 데이터 바인딩을 요청하는 호출
+            //뷰 크기 조정 속도를 높일 수 있으므로 항상 호출하는 것이 좋음
         }
 
         companion object {
