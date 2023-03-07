@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.prac_android.R
 import com.example.prac_android.databinding.FragmentSleepTrackerBinding
 import com.example.prac_android.step6.database.SleepDatabase
@@ -35,6 +36,10 @@ class SleepTrackerFragment : Fragment() {
                 this, viewModelFactory).get(SleepTrackerViewModel::class.java)
 
         val adapter = SleepNightAdapter()
+
+        //그리드 레이아웃으로 변경
+        val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
+        binding.sleepList.layoutManager = manager
 
         binding.sleepList.adapter = adapter
 
