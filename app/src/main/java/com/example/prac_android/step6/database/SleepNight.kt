@@ -13,7 +13,7 @@ data class SleepNight (
     var nightId: Long = 0L,
     //나머지 속성엔 @ColumnInfo 사용
     @ColumnInfo(name = "start_time_milli")
-    val startTimeMilli: Long = System.currentTimeMillis(),
+    var startTimeMilli: Long = System.currentTimeMillis(),
     @ColumnInfo(name = "end_time_milli")
     var endTimeMilli: Long = startTimeMilli,
     @ColumnInfo(name = "quality_rating")
