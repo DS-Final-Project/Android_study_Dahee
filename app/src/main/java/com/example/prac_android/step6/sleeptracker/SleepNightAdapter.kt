@@ -5,18 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prac_android.R.drawable
 import com.example.prac_android.databinding.ListItemSleepNightBinding
-import com.example.prac_android.step6.convertDurationToFormatted
-import com.example.prac_android.step6.convertNumericQualityToString
 import com.example.prac_android.step6.database.SleepNight
 import com.example.prac_android.step6.sleeptracker.SleepNightAdapter.ViewHolder
 
-class SleepNightAdapter : ListAdapter<SleepNight, ViewHolder>(SleepNightDiffCallback()) {
+class SleepNightAdapter(val clickListener: SleepNightListener) :
+    ListAdapter<SleepNight, ViewHolder>(SleepNightDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,8 +23,9 @@ class SleepNightAdapter : ListAdapter<SleepNight, ViewHolder>(SleepNightDiffCall
 
     class ViewHolder private constructor(val binding: ListItemSleepNightBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SleepNight) {
+        fun bind(item: SleepNight, clickListener: SleepNightListener) {
             binding.sleep = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
             //보류 중인 바인딩을 즉시 실행하도록 데이터 바인딩을 요청하는 호출
             //뷰 크기 조정 속도를 높일 수 있으므로 항상 호출하는 것이 좋음
@@ -51,4 +50,8 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
         return oldItem == newItem
     }
 
+}
+
+class SleepNightListener(val clickListener: (sleepId: Long)->Unit) {
+    fun onClick(night: SleepNight) = clickListener(night.nightId)
 }

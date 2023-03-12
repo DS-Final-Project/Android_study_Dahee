@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_sleepTrackerFragment_to_sleepQualityFragment"
             app:destination="@id/sleep_quality_fragment" />
+        <action
+            android:id="@+id/action_sleep_tracker_fragment_to_sleepDetailFragment"
+            app:destination="@id/sleep_detail_fragment" />
     </fragment>
 
     <fragment
@@ -34,7 +37,7 @@
         android:id="@+id/sleep_detail_fragment"
         android:name="com.example.prac_android.step6.sleepdetail.SleepDetailFragment"
         android:label="fragment_sleep_detail"
-        tools:layout="@layout/fragment_sleep_detail" >
+        tools:layout="@layout/fragment_sleep_detail">
         <argument
             android:name="sleepNightKey"
             app:argType="long" />
