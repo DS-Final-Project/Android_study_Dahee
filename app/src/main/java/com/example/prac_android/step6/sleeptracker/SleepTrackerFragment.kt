@@ -32,20 +32,25 @@ class SleepTrackerFragment : Fragment() {
 
         val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application)
 
-        val sleepTrackerViewModel =
-            ViewModelProvider(
-                this, viewModelFactory).get(SleepTrackerViewModel::class.java)
+        val sleepTrackerViewModel = ViewModelProvider(
+            this, viewModelFactory)[SleepTrackerViewModel::class.java]
 
         val adapter = SleepNightAdapter(SleepNightListener { nightId ->
             //Toast.makeText(context, "$nightId",Toast.LENGTH_LONG).show()
             sleepTrackerViewModel.onSleepNightClicked(nightId)
         })
+        binding.sleepList.adapter = adapter
+
+
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         //그리드 레이아웃으로 변경
-        val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
+        val manager = GridLayoutManager(activity, 3)
         binding.sleepList.layoutManager = manager
-
-        binding.sleepList.adapter = adapter
 
         binding.lifecycleOwner = this
 
@@ -79,12 +84,6 @@ class SleepTrackerFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
                 sleepTrackerViewModel.doneShowingSnackbar()
-            }
-        })
-
-        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
             }
         })
 
