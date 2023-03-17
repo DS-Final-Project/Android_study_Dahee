@@ -50,6 +50,12 @@ class SleepTrackerFragment : Fragment() {
 
         //그리드 레이아웃으로 변경
         val manager = GridLayoutManager(activity, 3)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+            override fun getSpanSize(position: Int) = when (position){
+                0 -> 3
+                else -> 1
+            }
+        }
         binding.sleepList.layoutManager = manager
 
         binding.lifecycleOwner = this
