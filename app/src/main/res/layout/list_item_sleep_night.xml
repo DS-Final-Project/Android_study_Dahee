@@ -9,9 +9,14 @@
             name="sleep"
             type="com.example.prac_android.step6.database.SleepNight" />
 
+        <variable
+            name="clickListener"
+            type="com.example.prac_android.step6.sleeptracker.SleepNightListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{() -> clickListener.onClick(sleep)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
