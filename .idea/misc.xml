@@ -8,10 +8,12 @@
         <entry key="app/src/main/res/drawable/bakery_back.xml" value="0.1175" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_game.xml" value="0.18796296296296297" />
         <entry key="app/src/main/res/layout/fragment_game2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_game_over.xml" value="0.20555555555555555" />
         <entry key="app/src/main/res/layout/fragment_game_won.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_rules.xml" value="0.19074074074074074" />
         <entry key="app/src/main/res/layout/fragment_score.xml" value="0.22777777777777777" />
         <entry key="app/src/main/res/layout/fragment_sleep_detail.xml" value="0.1" />
